@@ -1,0 +1,29 @@
+{
+  "name": "wad-or-not",
+  "version": "1.0.0",
+  "description": "Serving up 20-year-old textures since 2017",
+  "main": "./js/main.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vegeta897/wad-or-not.git"
+  },
+  "keywords": [
+    "wad"
+  ],
+  "author": "Devin Spikowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vegeta897/wad-or-not/issues"
+  },
+  "homepage": "https://github.com/vegeta897/wad-or-not#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "webpack": "^2.2.1"
+  }
+}
