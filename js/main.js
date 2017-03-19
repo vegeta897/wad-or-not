@@ -1,7 +1,11 @@
 'use strict';
 const mainDiv = document.getElementById('main');
+const scale = 4;
 const canvas = document.createElement('canvas');
+canvas.style.transform = `scale(${scale}, ${scale})`;
 const context = canvas.getContext('2d');
+context.mozImageSmoothingEnabled = false;
+context.imageSmoothingEnabled = false;
 mainDiv.appendChild(canvas);
 
 fetch('php/images.php')
@@ -11,9 +15,8 @@ fetch('php/images.php')
     .then(loadImage);
 
 function loadImage(filename) {
-    console.log(filename);
     const img = document.createElement('img');
-    img.src = 'textures/' + filename;
+    img.src = 'textures/' + encodeURIComponent(filename);
     img.onload = () => {
         console.log('image',filename,'loaded');
         canvas.width = img.width;
@@ -21,3 +24,10 @@ function loadImage(filename) {
         context.drawImage(img, 0, 0);
     }
 }
+
+fetch('php/db.php')
+    .then(function(response) {
+        return response.text();
+    }).then(function(text) {
+    console.log(text);
+});

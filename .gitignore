@@ -38,3 +38,4 @@ jspm_packages
 .idea/
 textures/*.png
 dist/bundle.js
+config.php
