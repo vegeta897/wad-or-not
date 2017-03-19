@@ -10,24 +10,17 @@ mainDiv.appendChild(canvas);
 
 fetch('php/images.php')
     .then(function(response) {
-        return response.text();
+        return response.json();
     })
     .then(loadImage);
 
-function loadImage(filename) {
+function loadImage(image) {
     const img = document.createElement('img');
-    img.src = 'textures/' + encodeURIComponent(filename);
+    img.src = 'textures/' + encodeURIComponent(image.filename);
     img.onload = () => {
-        console.log('image',filename,'loaded');
+        console.log('image', image.filename, 'loaded');
         canvas.width = img.width;
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
     }
 }
-
-fetch('php/db.php')
-    .then(function(response) {
-        return response.text();
-    }).then(function(text) {
-    console.log(text);
-});
