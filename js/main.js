@@ -1,22 +1,16 @@
 'use strict';
+const ImageLoader = require('./image-loader.js');
 const Canvas = require('./canvas.js');
 const title = document.getElementById('featureTitle');
 const canvas = new Canvas(document.getElementById('featureCanvas'));
 const scale = 4;
 canvas.setScale(scale);
 
-fetch('php/images.php')
-    .then(function(response) {
-        return response.json();
+ImageLoader.getImage
+    .then((image) => {
+        title.innerText = image.filename.slice(0, -4);
+        canvas.setImage(image.img);
     })
-    .then(loadImage);
-
-function loadImage(image) {
-    title.innerText = image.filename;
-    const img = document.createElement('img');
-    img.src = 'textures/' + encodeURIComponent(image.filename);
-    img.onload = () => {
-        console.log('image', image.filename, 'loaded');
-        canvas.setImage(img);
-    }
-}
+    .catch((error) => {
+        console.error(error);
+    });
