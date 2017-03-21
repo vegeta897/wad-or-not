@@ -1,13 +1,10 @@
 'use strict';
+const m = require('mithril');
 
 module.exports = {
-    getImage: fetch('php/images.php')
-        .then(checkStatus)
-        .then((response) => {
-            return response.json();
-        })
-        .then(loadImage)
-    
+    getImage: () => {
+        return m.request('php/images.php').then(loadImage);
+    }
 };
 
 function loadImage(image) {
@@ -20,17 +17,7 @@ function loadImage(image) {
             resolve(image);
         };
         image.img.onerror = () => {
-            reject(new Error('Image not found or invalid'));
+            reject(new Error(`File "${image.filename}" not found or invalid`));
         }
     });
-}
-
-function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    } else {
-        let error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-    }
 }

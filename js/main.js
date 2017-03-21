@@ -6,7 +6,9 @@ const canvas = new Canvas(document.getElementById('featureCanvas'));
 const scale = 4;
 canvas.setScale(scale);
 
-ImageLoader.getImage
+const m = require('mithril');
+
+ImageLoader.getImage()
     .then((image) => {
         title.innerText = image.filename.slice(0, -4);
         canvas.setImage(image.img);

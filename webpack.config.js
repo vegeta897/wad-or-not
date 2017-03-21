@@ -4,7 +4,7 @@ const path = require('path');
 
 const config = {
     context: path.resolve(__dirname, 'js'),
-    entry: ['whatwg-fetch', './main.js'],
+    entry: ['./main.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'

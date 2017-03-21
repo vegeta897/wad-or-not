@@ -4,7 +4,7 @@
   "description": "Serving up 20-year-old textures since 2017",
   "main": "./js/main.js",
   "scripts": {
-    "start": "webpack --watch",
+    "start": "webpack -d --watch",
     "build": "webpack -p"
   },
   "repository": {
@@ -27,6 +27,6 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "whatwg-fetch": "^2.0.3"
+    "mithril": "^1.0.1"
   }
 }
