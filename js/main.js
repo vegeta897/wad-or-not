@@ -1,12 +1,9 @@
 'use strict';
-const mainDiv = document.getElementById('main');
+const Canvas = require('./canvas.js');
+const title = document.getElementById('featureTitle');
+const canvas = new Canvas(document.getElementById('featureCanvas'));
 const scale = 4;
-const canvas = document.createElement('canvas');
-canvas.style.transform = `scale(${scale}, ${scale})`;
-const context = canvas.getContext('2d');
-context.mozImageSmoothingEnabled = false;
-context.imageSmoothingEnabled = false;
-mainDiv.appendChild(canvas);
+canvas.setScale(scale);
 
 fetch('php/images.php')
     .then(function(response) {
@@ -15,12 +12,11 @@ fetch('php/images.php')
     .then(loadImage);
 
 function loadImage(image) {
+    title.innerText = image.filename;
     const img = document.createElement('img');
     img.src = 'textures/' + encodeURIComponent(image.filename);
     img.onload = () => {
         console.log('image', image.filename, 'loaded');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        context.drawImage(img, 0, 0);
+        canvas.setImage(img);
     }
 }

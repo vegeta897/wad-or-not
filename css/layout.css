@@ -1,0 +1,12 @@
+#main {
+    width: 100%;
+}
+
+#featureCanvas {
+    display: block;
+    margin: 0 auto;
+}
+
+#featureTitle {
+    text-align: center;
+}

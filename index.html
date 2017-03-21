@@ -4,25 +4,13 @@
     <meta charset="UTF-8">
     <title>WAD or Not?</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <style>
-        canvas {
-            position: absolute;
-            image-rendering: optimizeSpeed;             /* Older versions of FF          */
-            image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
-            image-rendering: -webkit-optimize-contrast; /* Safari                        */
-            image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
-            image-rendering: pixelated;                 /* Awesome future-browsers       */
-            -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
-            transform-origin: 0% 0%;
-            -ms-transform-origin: 0% 0%;
-            -webkit-transform-origin: 0% 0%;
-            -o-transform-origin: 0% 0%;
-            -moz-transform-origin: 0% 0%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
 </head>
 <body>
-    <div id="main"></div>
+    <div id="main">
+        <canvas id="featureCanvas"></canvas>
+        <h2 id="featureTitle"></h2>
+    </div>
     <script src="dist/bundle.js"></script>
 </body>
 </html>
