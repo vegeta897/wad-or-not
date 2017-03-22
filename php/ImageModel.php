@@ -25,8 +25,9 @@ class ImageModel
         }
     }
     
-    public function addImage(array $image)
+    public function addImage(Image $image)
     {
+        $image = (array) $image;
         $query = $this->db->prepare(
             'insert into images values(
                 :filename,
@@ -40,17 +41,36 @@ class ImageModel
         $query->execute($image);
     }
     
+    public function updateImage(Image $image)
+    {
+        $query = $this->db->prepare(
+            'update images set
+                upvotes = :upvotes,
+                downvotes = :downvotes,
+                views = :views
+            where filename = :filename'
+        );
+        $query->execute([
+            'upvotes' => $image->upvotes,
+            'downvotes' => $image->downvotes,
+            'views' => $image->views,
+            'filename' => $image->filename
+        ]);
+    }
+    
     public function getImage($filename)
     {
         require_once 'Image.php';
         $query = $this->db->prepare('select * from images where filename = :filename limit 1');
         $query->execute(array(':filename' => $filename));
+        $new = false;
         if ($query->rowCount() === 0) {
             $image = new Image();
             $image->filename = $filename;
+            $new = true;
         } else {
-            list($image) = $query->fetchAll(\PDO::FETCH_CLASS, 'Image');
+            list($image) = $query->fetchAll(\PDO::FETCH_CLASS, 'WADon\Image');
         }
-        return $image;
+        return [$image, $new];
     }
 }
