@@ -1,5 +1,10 @@
 * {
     font-family: 'Open Sans', sans-serif;
+    color: #131111;
+}
+
+body {
+    background: #f0eded;
 }
 
 h1, h2 {

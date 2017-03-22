@@ -10,10 +10,10 @@ $db = new PDO($dsn, $config->username, $config->pass, array(
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 ));
 
-$dir = '../textures';
-$files = scandir($dir);
+$dir = '../textures/';
+$files = glob($dir . '*.png');
 
-$randomFile = $files[array_rand($files)];
+$randomFile = substr($files[array_rand($files)], strlen($dir));
 
 $imageModel = new \WADon\ImageModel($db);
 $image = $imageModel->getImage($randomFile);
