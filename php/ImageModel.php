@@ -30,12 +30,12 @@ class ImageModel
         $image = (array) $image;
         $query = $this->db->prepare(
             'insert into images values(
-                :filename,
-                :width,
-                :height,
-                IFNULL(:upvotes, DEFAULT(upvotes)),
-                IFNULL(:downvotes, DEFAULT(downvotes)),
-                IFNULL(:views, DEFAULT(views))
+            :filename,
+            :width,
+            :height,
+            IFNULL(:upvotes, DEFAULT(upvotes)),
+            IFNULL(:downvotes, DEFAULT(downvotes)),
+            IFNULL(:views, DEFAULT(views))
             )'
         );
         $query->execute($image);

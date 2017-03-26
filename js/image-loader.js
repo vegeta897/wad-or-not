@@ -1,9 +1,16 @@
 'use strict';
 const m = require('mithril');
+const url = 'php/images.php';
 
 module.exports = {
-    getImage: () => {
-        return m.request('php/images.php').then(loadImage);
+    getImage() {
+        return m.request(url).then(loadImage);
+    },
+    voteImage(filename, vote) {
+        return m.request(url, { 
+            method: 'POST',
+            data: { filename, vote }
+        });
     }
 };
 

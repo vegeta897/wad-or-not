@@ -12,7 +12,25 @@ h2 {
     padding-bottom: 4px;
 }
 
-#featureCanvas {
+.feature {
+    position: relative;
+    margin: 0 auto;
+}
+
+.feature-canvas {
     display: block;
     margin: 0 auto;
+}
+
+.voting {
+    width: 192px;
+    margin: 4px auto 8px auto;
+}
+
+.voting-button {
+    width: 80px;
+    height: 70px;
+    margin: 0 8px;
+    font-size: 40px;
+    padding-bottom: 5px;
 }

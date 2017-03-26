@@ -2,6 +2,7 @@
 
 module.exports = {
     drawImage(canvas, image, scale) {
+        console.log('drawn image!');
         canvas.width = image.width * scale;
         canvas.height = image.height * scale;
         let ctx = canvas.getContext('2d');

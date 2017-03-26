@@ -10,9 +10,11 @@ let imageData;
 
 MainView.data = {};
 MainView.canvasView = CanvasView;
+MainView.vote = () => {};
+CanvasView.data = {};
 CanvasView.newImage = newImage;
-CanvasView.onupdate = function(vnode) {
-    if(imageData) Canvas.drawImage(vnode.dom, imageData.img, scale);
+CanvasView.onupdate = (vNode) => {
+    if(imageData) Canvas.drawImage(vNode.dom.getElementsByTagName('canvas')[0], imageData.img, scale);
 };
 
 m.mount(document.body, MainView);
@@ -22,10 +24,27 @@ function newImage() {
         .then((imageObject) => {
             imageData = imageObject;
             MainView.data.title = imageData.filename.slice(0, -4);
+            MainView.vote = voteImage;
+            MainView.ready = true;
+            CanvasView.ready = true;
+            CanvasView.data.width = imageData.width;
+            CanvasView.data.height = imageData.height;
         })
         .catch((error) => {
             console.error(error);
         });
+}
+
+function voteImage(dir) {
+    console.log('vote', dir);
+    MainView.ready = false;
+    CanvasView.ready = false;
+    MainView.vote = () => {};
+    ImageLoader.voteImage(imageData.filename, dir)
+        .catch((error) => {
+            console.error(error);
+        });
+    newImage();
 }
 
 newImage();
